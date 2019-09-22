@@ -54,20 +54,12 @@ class App extends React.Component{
     return (
       <div>
         <div className={classes[0]}>
-          <Toolbar
-            icon={classes[2]}
-            onClick={this.handleEditorMaximize}
-            text="Editor"/>
           <Editor markdown={this.state.markdown}
             onChange={this.handleChange} />
         </div>
         <div className="converter">
         </div>
         <div className={classes[1]}>
-          <Toolbar
-            icon={classes[2]}
-            onClick={this.handlePreviewMaximize}
-            text="Previewer"/>
           <Preview  markdown={this.state.markdown}/>
         </div>
       </div>
@@ -77,15 +69,7 @@ class App extends React.Component{
 
 export default App;
 
-const Toolbar = (props) => {
-    return (
-      <div className="toolbar">
-        <i title="no-stack-dub-sack" className="fa fa-free-code-camp"/>
-        {props.text}
-        <i onClick={props.onClick} className={props.icon}></i>
-      </div>
-   )
-}
+
 
 const Editor = (props) => {
   return (
@@ -98,8 +82,7 @@ const Editor = (props) => {
 
 const Preview = (props) => {
   return (
-      //<div id='preview' dangerouslySetInnerHTML={{__html: marked(props.markdown, { renderer: renderer })}} />
-      <div id='preview' />
+      <div id='preview' dangerouslySetInnerHTML={{__html: window.marked(props.markdown, { renderer: renderer })}} />
     )
 }
 
